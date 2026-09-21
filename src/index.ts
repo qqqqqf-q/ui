@@ -67,3 +67,7 @@ export * from './components/textarea/index'
 export * from './components/time-input/index'
 export * from './components/toggle/index'
 export * from './components/tooltip/index'
+
+export { MenuManageIcon, MenuConnectorIcon, MenuUploadIcon, MenuCloudIcon, MenuComputerIcon } from './components/menu-icons'
+
+export * from './components/menu-scroll-area'

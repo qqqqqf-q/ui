@@ -633,6 +633,23 @@ grows (clipped controls, cramped rows, same-row controls that stop matching heig
 
 - Every interactive control sets `cursor-pointer` (Button, Switch, segmented
   item, …). Disabled flips to `cursor-not-allowed`.
+- **It must be set explicitly — there is no safety net.** Tailwind v4's
+  preflight dropped the v3-era `button, [role=button] { cursor: pointer }`
+  rule, so every clickable element falls back to the UA default (the plain
+  arrow) unless the component sets the class itself. When adding a new
+  interactive component, `cursor-pointer` is part of the base class, not an
+  afterthought — a shared trigger class (e.g. `lib/trigger.ts`
+  `selectTriggerClass`) carries it once for all consumers.
+- **Deliberate non-pointer exceptions** (do not "fix" these):
+  - **Menu rows and menu labels** (`lib/menu.ts`) use `cursor-default` — the
+    macOS menu convention: an open menu is a transient command surface the
+    pointer glides over, not a page of buttons.
+  - **Select scroll up/down buttons** — part of the menu surface, same
+    convention.
+  - **Text-field addons** (`InputGroup` inline text/icons) use `cursor-text` —
+    they belong to the field's text zone.
+  - **Resize rails** (`SidebarRail`) use the resize cursor; **the ScrollArea
+    thumb** keeps its default (drag affordance is its own vocabulary).
 
 ## Dirty patterns — anti-examples (do NOT copy)
 

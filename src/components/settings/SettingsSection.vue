@@ -30,7 +30,8 @@ withDefaults(defineProps<{
          fighting. The nth-last-child(3) rule hands the "I'm last" treatment to
          whatever content element sits directly above the footer's hairline. -->
     <div
-      class="overflow-hidden rounded-menu-shell border border-border bg-card"
+      data-settings-section-card
+      class="overflow-hidden rounded-menu-shell border border-border bg-section-card dark:border-0"
       :class="$slots.footer ? '[&>:nth-last-child(3)]:border-b-0' : ''"
     >
       <slot />
@@ -44,7 +45,10 @@ withDefaults(defineProps<{
           aria-hidden="true"
           class="mx-4 border-t border-border"
         />
-        <div class="flex items-center justify-end gap-2 px-4 py-3">
+        <div
+          data-settings-section-footer
+          class="flex items-center justify-end gap-2 px-4 py-3"
+        >
           <slot name="footer" />
         </div>
       </template>
